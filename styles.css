@@ -1,0 +1,67 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --body-bg: hsl(245, 100%, 7%);
+  --body-clr: hsl(255 100% 100%);
+}
+body {
+  background-color: var(--body-bg);
+  color: var(--body-clr);
+  font-size: 1rem;
+  font-family: system-ui, Arial, Helvetica, sans-serif;
+  line-height: 1.5rem;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.charts {
+  display: flex;
+  gap: 2rem;
+}
+.rating {
+  --marker-radius: 100px;
+  --marker-clr: white;
+  --marker-height: 20px;
+  --marker-width: 2px;
+  --marker-clr-empty: hsla(0, 0%, 87%, 30%);
+
+  position: relative;
+  width: calc(var(--marker-radius) * 2);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+.marker {
+  position: absolute;
+  width: var(--marker-width);
+  height: var(--marker-height);
+  border-radius: 999px;
+  background: var(--marker-clr-empty);
+  top: 0;
+  left: 50%;
+  transform-origin: 50% var(--marker-radius);
+  opacity: 0;
+  animation: revealMarker 100ms linear forwards;
+}
+.marker.completed {
+  background-color: var(--marker-clr);
+}
+@keyframes revealMarker {
+  to {
+    opacity: 1;
+  }
+}
+h2 {
+  text-align: center;
+  font-weight: normal;
+  color: var(--marker-clr);
+}
+h2 .counter {
+  font-size: 3rem;
+  font-weight: 700;
+}
